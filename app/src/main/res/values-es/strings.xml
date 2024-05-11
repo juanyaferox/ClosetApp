@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Aplicación Closet</string>
+    <string name="main_screenDescription">Pantalla principal de closet</string>
+    <string name="submenu_upload">Subir vestimenta</string>
+    <string name="submenu_head">Accesorios de cabeza</string>
+    <string name="submenu_upperbody">Accesorios de torso</string>
+    <string name="submenu_lowerbody">Accesorios de piernas</string>
+    <string name="submenu_home">Página principal</string>
+    <string name="app_home">Página principal</string>
+</resources>
