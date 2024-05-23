@@ -7,4 +7,6 @@
     <string name="submenu_lowerbody">Accesorios de piernas</string>
     <string name="submenu_home">Página principal</string>
     <string name="app_home">Página principal</string>
+    <string name="hello_blank_fragment">Hola fragement en blanco</string>
+    <string name="submenu_info">Información</string>
 </resources>

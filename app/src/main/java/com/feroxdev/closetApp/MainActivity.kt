@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.ListFragment
 import androidx.navigation.findNavController
@@ -24,22 +25,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val itemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            var selectedFragment: Fragment? = null
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener(itemSelectedListener)
+    }
 
-            when (item.itemId) {
-                R.id.nav_icon0 -> selectedFragment = HomeFragment()
-                R.id.nav_icon1 -> selectedFragment = HeadFragment()
-                R.id.nav_icon2 -> selectedFragment = UpperbodyFragment()
-                R.id.nav_icon3 -> selectedFragment = LowerbodyFragment()
-                R.id.nav_icon4 -> selectedFragment = UploadFragment()
-            }//NO PETA
+    private val itemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        var selectedFragment: Fragment? = null
 
-            if (selectedFragment != null) {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container,selectedFragment).commit()
+        when (item.itemId) {
+            R.id.nav_icon0 -> {
+                showCustomDialog()
+                return@OnNavigationItemSelectedListener true
             }
-
-            true
+            R.id.nav_icon1 -> selectedFragment = HeadFragment()
+            R.id.nav_icon2 -> selectedFragment = UpperbodyFragment()
+            R.id.nav_icon3 -> selectedFragment = LowerbodyFragment()
+            R.id.nav_icon4 -> selectedFragment = UploadFragment()
         }
+
+        if (selectedFragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
+        }
+
+        true
+    }
+
+    private fun showCustomDialog() {
+        val dialogFragment: DialogFragment = HomeFragment()
+        dialogFragment.show(supportFragmentManager, "custom_dialog")
     }
 }
