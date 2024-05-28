@@ -1,35 +1,37 @@
 package com.feroxdev.closetApp
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.feroxdev.closetApp.ui.fragments.HeadFragment
-import com.feroxdev.closetApp.ui.fragments.HomeFragment
-import com.feroxdev.closetApp.ui.fragments.LowerbodyFragment
-import com.feroxdev.closetApp.ui.fragments.UploadFragment
-import com.feroxdev.closetApp.ui.fragments.UpperbodyFragment
+import com.feroxdev.closetApp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.setOnNavigationItemSelectedListener(itemSelectedListener)
+        setSupportActionBar(binding.toolbar)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        setupActionBarWithNavController(navController)
+
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
     }
 
-    private val itemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    /*private val itemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         var selectedFragment: Fragment? = null
 
         when (item.itemId) {
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCustomDialog() {
-        val dialogFragment: DialogFragment = HomeFragment()
+        val dialogFragment: DialogFragment = InfoFragment()
         dialogFragment.show(supportFragmentManager, "custom_dialog")
-    }
+    }*/
 }

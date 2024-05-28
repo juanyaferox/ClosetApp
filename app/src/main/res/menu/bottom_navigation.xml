@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/nav_icon0"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/submenu_home"/>
     <item
-        android:id="@+id/nav_icon1"
+        android:id="@+id/headFragment"
         android:icon="@drawable/baseline_face_24"
         android:title="@string/submenu_head"
         />
     <item
-        android:id="@+id/nav_icon2"
+        android:id="@+id/upperBodyFragment"
         android:icon="@drawable/clothes"
         android:title="@string/submenu_upperbody"
         />
     <item
-        android:id="@+id/nav_icon3"
+        android:id="@+id/lowerBodyFragment"
         android:icon="@drawable/pants"
         android:title="@string/submenu_lowerbody"
         />
     <item
-        android:id="@+id/nav_icon4"
+        android:id="@+id/uploadFragment"
         android:icon="@drawable/baseline_upload_24"
         android:title="@string/submenu_upload"/>
 </menu>
