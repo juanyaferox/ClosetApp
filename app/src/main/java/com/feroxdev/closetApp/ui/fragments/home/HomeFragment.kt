@@ -1,4 +1,4 @@
-package com.feroxdev.closetApp.ui.fragments
+package com.feroxdev.closetApp.ui.fragments.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.feroxdev.closetApp.R
+import com.feroxdev.closetApp.ui.fragments.upload.UploadFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

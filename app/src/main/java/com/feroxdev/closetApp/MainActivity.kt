@@ -1,18 +1,29 @@
 package com.feroxdev.closetApp
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.feroxdev.closetApp.data.dao.ImageSourceDAO
+import com.feroxdev.closetApp.data.database.ImageSourceDatabase
+import com.feroxdev.closetApp.data.instance.ImageSourceApplication
 import com.feroxdev.closetApp.databinding.ActivityMainBinding
+import com.feroxdev.closetApp.ui.viewmodels.ImageSourceViewModel
+import com.feroxdev.closetApp.ui.viewmodels.ImageSourceViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
+    private val imageSourceViewModel: ImageSourceViewModel by viewModels{
+        ImageSourceViewModelFactory((application as ImageSourceApplication).repository)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -31,26 +42,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    /*private val itemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        var selectedFragment: Fragment? = null
-
-        when (item.itemId) {
-            R.id.nav_icon0 -> {
-                showCustomDialog()
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.nav_icon1 -> selectedFragment = HeadFragment()
-            R.id.nav_icon2 -> selectedFragment = UpperbodyFragment()
-            R.id.nav_icon3 -> selectedFragment = LowerbodyFragment()
-            R.id.nav_icon4 -> selectedFragment = UploadFragment()
-        }
-
-        if (selectedFragment != null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit()
-        }
-
-        true
-    }
+    /*
 
     private fun showCustomDialog() {
         val dialogFragment: DialogFragment = InfoFragment()

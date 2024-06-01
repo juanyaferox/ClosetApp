@@ -9,4 +9,6 @@
     <string name="app_home">Página principal</string>
     <string name="hello_blank_fragment">Hola fragement en blanco</string>
     <string name="submenu_info">Información</string>
+    <string name="menu_upload_camera">Cámara</string>
+    <string name="menu_upload_gallery">Galeria</string>
 </resources>

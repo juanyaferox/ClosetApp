@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.HomeFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/headFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.HeadFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.head.HeadFragment"
         android:label="Head"
         tools:layout="@layout/fragment_head" />
 
     <fragment
         android:id="@+id/upperBodyFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.UpperbodyFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.upperbody.UpperbodyFragment"
         android:label="Upper Body"
         tools:layout="@layout/fragment_upperbody" />
 
     <fragment
         android:id="@+id/lowerBodyFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.LowerbodyFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.lowerbody.LowerbodyFragment"
         android:label="Lower Body"
         tools:layout="@layout/fragment_lowerbody" />
 
     <fragment
         android:id="@+id/uploadFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.UploadFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.upload.UploadFragment"
         android:label="Upload"
         tools:layout="@layout/fragment_upload" >
         <action
@@ -44,12 +44,12 @@
 
     <fragment
         android:id="@+id/takePhotoFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.TakePhotoFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.upload.TakePhotoFragment"
         android:label="Take Photo" />
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.GalleryFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.upload.GalleryFragment"
         android:label="Gallery" />
 
 </navigation>

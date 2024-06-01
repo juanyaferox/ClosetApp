@@ -1,4 +1,4 @@
-package com.feroxdev.closetApp.ui.fragments
+package com.feroxdev.closetApp.ui.fragments.misc
 
 import android.app.Dialog
 import android.os.Bundle

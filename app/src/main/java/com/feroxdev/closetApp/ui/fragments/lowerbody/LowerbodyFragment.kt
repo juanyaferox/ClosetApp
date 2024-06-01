@@ -1,4 +1,4 @@
-package com.feroxdev.closetApp.ui.fragments
+package com.feroxdev.closetApp.ui.fragments.lowerbody
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,14 +14,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [HeadFragment.newInstance] factory method to
+ * Use the [LowerbodyFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HeadFragment : Fragment() {
+class LowerbodyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_head, container, false)
+        return inflater.inflate(R.layout.fragment_lowerbody, container, false)
     }
 }
