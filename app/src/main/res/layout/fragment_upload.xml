@@ -8,21 +8,6 @@
     tools:context=".ui.fragments.upload.UploadFragment">
 
     <ImageButton
-        android:id="@+id/takePhotoButtom"
-        android:layout_width="104dp"
-        android:layout_height="99dp"
-        android:background="@drawable/roundcorner"
-        android:importantForAccessibility="no"
-        android:scaleType="fitCenter"
-        android:src="@drawable/baseline_camera_alt_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
-
-    <ImageButton
         android:id="@+id/galleryButtom"
         android:layout_width="104dp"
         android:layout_height="99dp"
@@ -32,8 +17,23 @@
         android:src="@drawable/baseline_photo_library_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toEndOf="@+id/takePhotoButtom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.223" />
+
+    <ImageButton
+        android:id="@+id/takePhotoButtom"
+        android:layout_width="104dp"
+        android:layout_height="99dp"
+        android:background="@drawable/roundcorner"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_camera_alt_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.223" />
 
@@ -41,7 +41,7 @@
         android:id="@+id/textView4"
         android:layout_width="210dp"
         android:layout_height="45dp"
-        android:fontFamily="@font/titlefont"
+        android:fontFamily="@font/appfont"
         android:text="@string/submenu_upload"
         android:textAlignment="center"
         android:textAllCaps="true"
