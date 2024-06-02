@@ -35,21 +35,21 @@
         android:label="Upload"
         tools:layout="@layout/fragment_upload" >
         <action
-            android:id="@+id/action_uploadFragment_to_takePhotoFragment"
-            app:destination="@id/takePhotoFragment" />
-        <action
             android:id="@+id/action_uploadFragment_to_galleryFragment"
-            app:destination="@id/galleryFragment" />
+            app:destination="@id/galleryFragment" >
+            <argument
+                android:name="imageUri"
+                app:argType="string" />
+        </action>
     </fragment>
-
-    <fragment
-        android:id="@+id/takePhotoFragment"
-        android:name="com.feroxdev.closetApp.ui.fragments.upload.TakePhotoFragment"
-        android:label="Take Photo" />
-
     <fragment
         android:id="@+id/galleryFragment"
         android:name="com.feroxdev.closetApp.ui.fragments.upload.GalleryFragment"
-        android:label="Gallery" />
+        android:label="Gallery"
+        tools:layout="@layout/fragment_gallery">
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

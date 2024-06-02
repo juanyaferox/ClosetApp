@@ -6,4 +6,5 @@ public class Helper {
         UPPERBODY(20),
         LOWERBODY(30),
     }
+
 }

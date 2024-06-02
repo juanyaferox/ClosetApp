@@ -29,6 +29,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
     }
 
     buildFeatures {
@@ -57,4 +58,21 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
+    val lifecycle_version = "2.4.0"
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    val camerax_version = "1.3.3"
+    implementation ("androidx.camera:camera-core:${camerax_version}")
+    implementation ("androidx.camera:camera-camera2:${camerax_version}")
+    implementation ("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation ("androidx.camera:camera-video:${camerax_version}")
+
+    implementation ("androidx.camera:camera-view:${camerax_version}")
+    implementation ("androidx.camera:camera-extensions:${camerax_version}")
+    implementation ("com.google.guava:guava:30.1.1-android")
+
+    // https://mvnrepository.com/artifact/org.openpnp/opencv
+    implementation("org.openpnp:opencv:4.9.0-0")
+
+
 }

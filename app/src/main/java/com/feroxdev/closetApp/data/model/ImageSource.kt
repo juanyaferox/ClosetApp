@@ -3,11 +3,11 @@ package com.feroxdev.closetApp.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "image_source")
+@Entity
 data class ImageSource (
-    @PrimaryKey(autoGenerate = true) val idImageSource: Int = 0,
+    @PrimaryKey(autoGenerate = true) val idImage: Int = 0,
     val generatedName: String,
-    val sourceName: String,
     val path: String,
-    val category: Int
+    val category: Int,
+    val subcategory: Int
 )

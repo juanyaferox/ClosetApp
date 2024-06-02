@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.feroxdev.closetApp.R
+import com.feroxdev.closetApp.databinding.FragmentUpperbodyBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,10 +18,28 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class UpperbodyFragment : Fragment() {
+
+    private var binding: FragmentUpperbodyBinding? = null
+    private val unbinding get() = binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_upperbody, container, false)
+        // Inflate the layout for this fragment
+        binding = FragmentUpperbodyBinding.inflate(inflater, container, false)
+        return unbinding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Ahora puedes usar el binding para acceder a las vistas
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
 }
