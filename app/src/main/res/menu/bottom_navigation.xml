@@ -24,4 +24,5 @@
         android:id="@+id/uploadFragment"
         android:icon="@drawable/baseline_upload_24"
         android:title="@string/submenu_upload"/>
+
 </menu>

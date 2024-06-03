@@ -50,6 +50,9 @@
         <argument
             android:name="imageUri"
             app:argType="string" />
+        <action
+            android:id="@+id/action_galleryFragment_to_uploadFragment"
+            app:destination="@id/uploadFragment" />
     </fragment>
 
 </navigation>

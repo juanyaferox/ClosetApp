@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.feroxdev.closetApp.data.App
 import com.feroxdev.closetApp.databinding.ActivityMainBinding
 import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModel
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val imageSourceCollectionViewModel: ImageSourceCollectionViewModel by viewModels {
         ImageSourceCollectionViewModelFactory((application as App).imageSourceCollectionRepository)
     }
+    private var menuInt : Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +47,20 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         //setupActionBarWithNavController(navController)
 
-        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+        val bottomNavigationView = binding.bottomNavigationView
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+        //lógica agregada para arregla fallo de navigation
+        if (navController.currentDestination?.id != R.id.homeFragment) {
+            navController.addOnDestinationChangedListener { _, destination, _ ->
+                val menu = bottomNavigationView.menu
+                for (i in 0 until menu.size()) {
+                    val menuItem = menu.getItem(i)
+                    menuItem.isChecked = menuItem.itemId == destination.id
+                }
+            }
+        }
+        menuInt++
     }
-
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

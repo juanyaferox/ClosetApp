@@ -6,5 +6,31 @@ public class Helper {
         UPPERBODY(20),
         LOWERBODY(30),
     }
+    public enum class HeadSubtype (val int: Int){
+        BONNET(10),
+        GLASSES(20),
+        JEWELRY(30),
+        OTHERS(40)
+    }
 
+    public enum class UpperSubtype (val int: Int){
+        JACKET(10),
+        SHIRT(20),
+        SWEATER(30),
+        OTHERS(40)
+    }
+
+    public enum class LowerSubtype (val int: Int){
+        SHORTS(10),
+        LONGS(20),
+        SKIRT(30),
+        ACCESORIES(40)
+    }
+
+    public enum class Subtype (val int: Int){
+        ONE(10),
+        TWO(20),
+        THREE(30),
+        FOUR(40)
+    }
 }

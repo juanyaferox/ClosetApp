@@ -15,5 +15,6 @@
     <string name="title_lowerbody" translatable="false">Lower body</string>
     <string name="title_upperbody" translatable="false">Upper body</string>
     <string name="title_head" translatable="false">Head</string>
+    <string name="submit">Submit</string>
 
 </resources>

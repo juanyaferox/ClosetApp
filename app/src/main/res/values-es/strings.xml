@@ -11,4 +11,5 @@
     <string name="submenu_info">Información</string>
     <string name="menu_upload_camera">Cámara</string>
     <string name="menu_upload_gallery">Galeria</string>
+    <string name="submit">Confirmar</string>
 </resources>

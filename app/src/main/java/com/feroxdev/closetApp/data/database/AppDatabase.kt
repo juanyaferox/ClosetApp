@@ -11,7 +11,7 @@ import com.feroxdev.closetApp.data.model.ImageSource
 import com.feroxdev.closetApp.data.model.ImageSourceCollectionCrossRef
 import com.feroxdev.closetApp.data.model.Collection
 
-@Database(entities = [ImageSource::class, Collection::class, ImageSourceCollectionCrossRef::class], version = 1)
+@Database(entities = [ImageSource::class, Collection::class, ImageSourceCollectionCrossRef::class], version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun imageSourceDAO(): ImageSourceDAO
     abstract fun collectionDAO(): CollectionDAO

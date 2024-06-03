@@ -19,10 +19,10 @@ interface ImageSourceDAO {
     @Delete
     suspend fun delete(imageSource: ImageSource)
 
-    @Query("SELECT * FROM image_source")
+    @Query("SELECT * FROM ImageSource")
     suspend fun getAllImages(): List<ImageSource>
 
-    @Query("SELECT * FROM image_source WHERE idImage = :id")
+    @Query("SELECT * FROM ImageSource WHERE idImage = :id")
     suspend fun getImageById(id: Int): ImageSource?
 
     ///ETC
