@@ -21,10 +21,10 @@ public class Helper {
     }
 
     public enum class LowerSubtype (val int: Int){
-        SHORTS(10),
-        LONGS(20),
+        PANTS(10),
+        SHORTS(20),
         SKIRT(30),
-        ACCESORIES(40)
+        BOTTOM(40)
     }
 
     public enum class Subtype (val int: Int){

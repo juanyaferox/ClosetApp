@@ -25,5 +25,12 @@ interface ImageSourceDAO {
     @Query("SELECT * FROM ImageSource WHERE idImage = :id")
     suspend fun getImageById(id: Int): ImageSource?
 
+    @Query("SELECT * FROM ImageSource WHERE category = :category")
+    suspend fun getImagesByCategory(category: Int): List<ImageSource>
+    @Query("SELECT * FROM ImageSource WHERE category = :category AND subcategory = :subcategory")
+    suspend fun getImageByCategoryAndSubcategory(category: Int, subcategory: Int): List<ImageSource>
+
+
+
     ///ETC
 }

@@ -2,27 +2,25 @@ package com.feroxdev.closetApp.ui.fragments.upload
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.navigation.fragment.findNavController
-import com.feroxdev.closetApp.R
-import com.feroxdev.closetApp.databinding.FragmentUploadBinding
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Environment
-import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.feroxdev.closetApp.R
+import com.feroxdev.closetApp.databinding.FragmentUploadBinding
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -60,28 +58,32 @@ class UploadFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
                     // Do something with the captured image
-                    val bundle = Bundle().apply {
-                        putString("imageUri", photoUri.toString())
+                    try{
+                        val imageUri = photoUri.toString()
+                        val action = UploadFragmentDirections.actionUploadFragmentToGalleryFragment(imageUri)
+                        findNavController().navigate(
+                            action
+                        )
+                    } catch (e: Exception) {
+                        Log.e("Error", "Error en el arguemento", e)
                     }
-                    findNavController().navigate(
-                        R.id.action_uploadFragment_to_galleryFragment,
-                        bundle
-                    )
+
                 }
             }
         galleryLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     // Handle the result if the operation was successful
-                    val imageUri = result.data?.data.toString()
-                    // Do something with the selected image URI, like display it in an ImageView
-                    val bundle = Bundle().apply {
-                        putString("imageUri", imageUri)
+                    try{
+                        val imageUri = result.data?.data.toString()
+                        val action = UploadFragmentDirections.actionUploadFragmentToGalleryFragment(imageUri)
+                        findNavController().navigate(
+                            action
+                        )
+                    }catch (e: Exception) {
+                        Log.e("Error", "Error en el arguemento", e)
                     }
-                    findNavController().navigate(
-                        R.id.action_uploadFragment_to_galleryFragment,
-                        bundle
-                    )
+
                 }
             }
 

@@ -2,26 +2,21 @@ package com.feroxdev.closetApp.ui.fragments.upload
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.feroxdev.closetApp.R
 import com.feroxdev.closetApp.data.App
 import com.feroxdev.closetApp.data.model.ImageSource
@@ -29,8 +24,6 @@ import com.feroxdev.closetApp.databinding.FragmentGalleryBinding
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
 import com.feroxdev.closetApp.utilities.Helper
-import com.google.android.material.snackbar.Snackbar
-import com.google.type.DateTime
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -49,7 +42,7 @@ class GalleryFragment : Fragment() {
     private var binding: FragmentGalleryBinding? = null
     private val onbinding get() = binding!!
     companion object {
-        private const val STORAGE_PERMISSION_REQUEST_CODE = 102
+        private const val STORAGE_PERMISSION_REQUEST_CODE = 102//CONVECION: CONSTANTES EN MAYUSCULAS
     }
 
     override fun onCreateView(
@@ -70,30 +63,28 @@ class GalleryFragment : Fragment() {
             changueOptions(checkedId)//cambio el texto de los botones de subtipo
         }
 
-        val imageUriString = arguments?.getString("imageUri")
-        if (imageUriString != null) {
+        val args: GalleryFragmentArgs by navArgs()
+        val imageUriString = args.imageUri
 
-            val imageUri = Uri.parse(imageUriString)
-            //muestro la imagen
-            onbinding.imageView.adjustViewBounds = true
-            onbinding.imageView.setImageURI(imageUri)
-            onbinding.button.setOnClickListener{
-                val imageSource = imageSourceModel(imageUri)//genero la imagen a guardar con las opciones elegidas
-                try{
-                    imageSourceViewModel.insert(imageSource)
-                    Toast.makeText(requireContext(), "Se ha guardado la imagen de la manera exitosa", Toast.LENGTH_SHORT).show()
-                    //una vez guardado en el repositorio vuelvo atrás
-                    val navController = findNavController()
-                    navController.popBackStack()
-                    findNavController().navigate(R.id.uploadFragment)
-                }catch (e: Exception){
-                    Toast.makeText(requireContext(), "Error al guardar la imagen", Toast.LENGTH_SHORT).show()
-                    Log.e("InsertError", "Error al insertar en la base de datos", e)
-                }
-
+        val imageUri = Uri.parse(imageUriString)
+        //muestro la imagen
+        onbinding.imageView.adjustViewBounds = true
+        onbinding.imageView.setImageURI(imageUri)
+        onbinding.button.setOnClickListener{
+            val imageSource = createImageSourceModel(imageUri)//genero la imagen a guardar con las opciones elegidas
+            try{
+                imageSourceViewModel.insert(imageSource)
+                Toast.makeText(requireContext(), getString(R.string.scsSavingImg), Toast.LENGTH_SHORT).show()
+                //una vez guardado en el repositorio vuelvo atrás
+                val navController = findNavController()
+                navController.popBackStack()
+                findNavController().navigate(R.id.uploadFragment)
+            }catch (e: Exception){
+                Toast.makeText(requireContext(), getString(R.string.errSavingImg), Toast.LENGTH_SHORT).show()
             }
 
         }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -101,49 +92,49 @@ class GalleryFragment : Fragment() {
     }
 
     private fun defineOptions() {
-        onbinding.option1RadioButton.setText("GORRA")
-        onbinding.option2RadioButton.setText("GAFA")
-        onbinding.option3RadioButton.setText("JOYERIA")
-        onbinding.option4RadioButton.setText("OTROS")
+        onbinding.option1RadioButton.text = getString(R.string.hat)
+        onbinding.option2RadioButton.text = getString(R.string.glasses)
+        onbinding.option3RadioButton.text = getString(R.string.jewelry)
+        onbinding.option4RadioButton.text = getString(R.string.others)
     }
     private fun changueOptions(checkedId: Int) {
 
             when(checkedId){
                 onbinding.buttonHead.id -> {
-                    onbinding.option1RadioButton.setText("GORRA")
-                    onbinding.option2RadioButton.setText("GAFA")
-                    onbinding.option3RadioButton.setText("JOYERIA")
-                    onbinding.option4RadioButton.setText("OTROS")
+                    onbinding.option1RadioButton.text = getString(R.string.hat)
+                    onbinding.option2RadioButton.text = getString(R.string.glasses)
+                    onbinding.option3RadioButton.text = getString(R.string.jewelry)
+                    onbinding.option4RadioButton.text = getString(R.string.others)
                 }
                 onbinding.buttonUpper.id ->{
-                    onbinding.option1RadioButton.setText("CHAQUETA")
-                    onbinding.option2RadioButton.setText("CAMISETA")
-                    onbinding.option3RadioButton.setText("SUDADERA")
-                    onbinding.option4RadioButton.setText("OTROS")
+                    onbinding.option1RadioButton.text = getString(R.string.jacket)
+                    onbinding.option2RadioButton.text = getString(R.string.tshirt)
+                    onbinding.option3RadioButton.text = getString(R.string.sweater)
+                    onbinding.option4RadioButton.text = getString(R.string.others)
                 }
                 onbinding.buttonLower.id -> {
-                    onbinding.option1RadioButton.setText("LARGO")
-                    onbinding.option2RadioButton.setText("CORTO")
-                    onbinding.option3RadioButton.setText("FALDA")
-                    onbinding.option4RadioButton.setText("ACCESORIOS")
+                    onbinding.option1RadioButton.text = getString(R.string.pants)
+                    onbinding.option2RadioButton.text = getString(R.string.shorts)
+                    onbinding.option3RadioButton.text = getString(R.string.skirt)
+                    onbinding.option4RadioButton.text = getString(R.string.bottom)
                 }
             }
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun imageSourceModel(imageUri: Uri) : ImageSource {
+    private fun createImageSourceModel(imageUri: Uri) : ImageSource {
         val name = onbinding.editTextText.text
         var mycategory : Int = -1
         var mysubcategory : Int = -1
         when(onbinding.radioGroup2.checkedRadioButtonId){
-            onbinding.buttonHead.id -> mycategory = Helper.ImageType.HEAD.ordinal
-            onbinding.buttonLower.id -> mycategory = Helper.ImageType.LOWERBODY.ordinal
-            onbinding.buttonUpper.id -> mycategory = Helper.ImageType.UPPERBODY.ordinal
+            onbinding.buttonHead.id -> mycategory = Helper.ImageType.HEAD.int
+            onbinding.buttonLower.id -> mycategory = Helper.ImageType.LOWERBODY.int
+            onbinding.buttonUpper.id -> mycategory = Helper.ImageType.UPPERBODY.int
         }
         when (onbinding.optionsRadioGroup.checkedRadioButtonId) {
-            onbinding.option1RadioButton.id -> mysubcategory = Helper.Subtype.ONE.ordinal
-            onbinding.option2RadioButton.id -> mysubcategory = Helper.Subtype.TWO.ordinal
-            onbinding.option3RadioButton.id -> mysubcategory = Helper.Subtype.THREE.ordinal
-            onbinding.option4RadioButton.id -> mysubcategory = Helper.Subtype.FOUR.ordinal
+            onbinding.option1RadioButton.id -> mysubcategory = Helper.Subtype.ONE.int
+            onbinding.option2RadioButton.id -> mysubcategory = Helper.Subtype.TWO.int
+            onbinding.option3RadioButton.id -> mysubcategory = Helper.Subtype.THREE.int
+            onbinding.option4RadioButton.id -> mysubcategory = Helper.Subtype.FOUR.int
         }
 
         checkStoragePermissions()
@@ -194,7 +185,7 @@ class GalleryFragment : Fragment() {
                 // Permisos concedidos, continuar con la operación
             } else {
                 // Permisos no concedidos, mostrar mensaje al usuario
-                Toast.makeText(requireContext(), "Permisos de almacenamiento requeridos para guardar la imagen.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.errImagePermission), Toast.LENGTH_SHORT).show()
             }
         }
     }

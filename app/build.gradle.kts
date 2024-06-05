@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
     id("com.vanniktech.dependency.graph.generator") version "0.7.0"
 }
 
@@ -29,17 +31,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
 
     }
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
 }
 
 dependencies {
@@ -83,6 +84,10 @@ dependencies {
     implementation ("androidx.camera:camera-view:${camerax_version}")
     implementation ("androidx.camera:camera-extensions:${camerax_version}")
     implementation ("com.google.guava:guava:30.1.1-android")
+
+    //***GLIDE DEPEDENCIES***//
+    implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
+    annotationProcessor ("com.github.bumptech.glide:compiler:5.0.0-rc01")
 
 
 }

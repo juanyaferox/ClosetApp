@@ -9,5 +9,7 @@ class ImageSourceRepository(private val imageSourceDAO: ImageSourceDAO) {
     suspend fun getImageById(id: Int) = imageSourceDAO.getImageById(id)
     suspend fun getAllImages() = imageSourceDAO.getAllImages()
     suspend fun deleteImage (imageSource: ImageSource) = imageSourceDAO.delete(imageSource)
+    suspend fun getImagesByCategory(category: Int) = imageSourceDAO.getImagesByCategory(category)
+    suspend fun getImagesByCategoryAndSubcategory(category: Int, subcategory : Int) = imageSourceDAO.getImageByCategoryAndSubcategory(category, subcategory)
 
 }

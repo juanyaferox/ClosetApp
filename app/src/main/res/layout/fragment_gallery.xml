@@ -78,7 +78,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dip"
-            android:text="Opción 1"
             android:textColor="@color/material_dynamic_neutral10" />
 
         <RadioButton
@@ -86,7 +85,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dip"
-            android:text="Opción 2"
             android:textColor="@color/material_dynamic_neutral10" />
 
         <RadioButton
@@ -94,7 +92,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dip"
-            android:text="Opción 3"
             android:textColor="@color/material_dynamic_neutral10" />
 
         <RadioButton
@@ -102,7 +99,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dip"
-            android:text="Opción 4"
             android:textColor="@color/material_dynamic_neutral10" />
     </RadioGroup>
 
@@ -111,11 +107,11 @@
         android:layout_width="250dp"
         android:layout_height="51dp"
         android:layout_marginBottom="56dp"
+        android:autofillHints="@string/app_name"
+        android:inputType="text"
         android:background="@drawable/roundcorner"
         android:ems="10"
-        android:inputType="text"
         android:padding="3dip"
-        android:text="ClotheName"
         android:textAlignment="center"
         android:textColor="@color/material_dynamic_neutral10"
         app:layout_constraintBottom_toBottomOf="parent"

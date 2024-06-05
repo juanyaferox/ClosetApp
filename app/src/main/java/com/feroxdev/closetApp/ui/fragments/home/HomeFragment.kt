@@ -1,10 +1,10 @@
 package com.feroxdev.closetApp.ui.fragments.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.feroxdev.closetApp.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Ahora puedes usar el binding para acceder a las vistas
 
     }
 

@@ -27,7 +27,6 @@ class InfoFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflar el layout del DialogFragment
         return inflater.inflate(R.layout.fragment_info, container, false)
     }
 

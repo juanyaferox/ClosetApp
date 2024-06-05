@@ -16,5 +16,20 @@
     <string name="title_upperbody" translatable="false">Upper body</string>
     <string name="title_head" translatable="false">Head</string>
     <string name="submit">Submit</string>
+    <string name="errSavingImg">Error saving image</string>
+    <string name="scsSavingImg">Saved successful</string>
+    <string name="hat">Hat</string>
+    <string name="glasses">Glasses</string>
+    <string name="jewelry">Jewelry</string>
+    <string name="others">Others</string>
+    <string name="tshirt">T shirt</string>
+    <string name="jacket">Jacket</string>
+    <string name="sweater">Sweater</string>
+    <string name="pants">Trousers</string>
+    <string name="skirt">Skirt</string>
+    <string name="bottom">Bottom</string>
+    <string name="shorts">Shorts</string>
+    <string name="errImagePermission">Need storage privileges to save the image</string>
+    <string name="all">All</string>
 
 </resources>

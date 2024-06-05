@@ -9,14 +9,14 @@
         android:id="@+id/dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Título del Diálogo"
+        android:text="Aplicación realizada por Juan Iago Martínez Correia"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/dialog_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mensaje del diálogo"
+        android:text="Con el objetivo de recuperar el módulo de PMDM de 2DAM"
         android:textSize="16sp"
         android:layout_marginTop="8dp" />
 

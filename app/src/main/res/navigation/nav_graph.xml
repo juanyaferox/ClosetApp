@@ -15,19 +15,34 @@
         android:id="@+id/headFragment"
         android:name="com.feroxdev.closetApp.ui.fragments.head.HeadFragment"
         android:label="Head"
-        tools:layout="@layout/fragment_head" />
+        tools:layout="@layout/fragment_commonsubtypes" >
+        <action
+            android:id="@+id/action_headFragment_to_imagesRecyclerViewFragment"
+            app:destination="@id/imagesRecyclerViewFragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/upperBodyFragment"
         android:name="com.feroxdev.closetApp.ui.fragments.upperbody.UpperbodyFragment"
         android:label="Upper Body"
-        tools:layout="@layout/fragment_upperbody" />
+        tools:layout="@layout/fragment_upperbody" >
+        <action
+            android:id="@+id/action_upperBodyFragment_to_imagesRecyclerViewFragment"
+            app:destination="@id/imagesRecyclerViewFragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/lowerBodyFragment"
         android:name="com.feroxdev.closetApp.ui.fragments.lowerbody.LowerbodyFragment"
         android:label="Lower Body"
-        tools:layout="@layout/fragment_lowerbody" />
+        tools:layout="@layout/fragment_lowerbody" >
+        <action
+            android:id="@+id/action_lowerBodyFragment_to_imagesRecyclerViewFragment"
+            app:destination="@id/imagesRecyclerViewFragment" >
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/uploadFragment"
@@ -37,9 +52,7 @@
         <action
             android:id="@+id/action_uploadFragment_to_galleryFragment"
             app:destination="@id/galleryFragment" >
-            <argument
-                android:name="imageUri"
-                app:argType="string" />
+
         </action>
     </fragment>
     <fragment
@@ -50,9 +63,17 @@
         <argument
             android:name="imageUri"
             app:argType="string" />
-        <action
-            android:id="@+id/action_galleryFragment_to_uploadFragment"
-            app:destination="@id/uploadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagesRecyclerViewFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.common.ImagesRecyclerViewFragment"
+        android:label="ImagesRecyclerViewFragment">
+    <argument
+        android:name="category"
+        app:argType="integer" />
+        <argument
+            android:name="subcategory"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

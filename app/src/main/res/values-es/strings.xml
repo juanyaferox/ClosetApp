@@ -12,4 +12,19 @@
     <string name="menu_upload_camera">Cámara</string>
     <string name="menu_upload_gallery">Galeria</string>
     <string name="submit">Confirmar</string>
+    <string name="errSavingImg">Error al guardar la imagen</string>
+    <string name="scsSavingImg">Se ha realizado el guardado de manera exitosa</string>
+    <string name="hat">Gorra</string>
+    <string name="glasses">Gafas</string>
+    <string name="jewelry">Joyería</string>
+    <string name="others">Otros</string>
+    <string name="tshirt">Camiseta</string>
+    <string name="jacket">Chaqueta</string>
+    <string name="sweater">Sudadera</string>
+    <string name="pants">Pantalón largo</string>
+    <string name="skirt">Falda</string>
+    <string name="bottom">Pies</string>
+    <string name="shorts">Pantalón corto</string>
+    <string name="errImagePermission">Permisos de almacenamiento requeridos para guardar la imagen</string>
+    <string name="all">Todos</string>
 </resources>
