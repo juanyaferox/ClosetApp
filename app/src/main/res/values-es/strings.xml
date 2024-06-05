@@ -1,15 +1,13 @@
 <resources>
-    <string name="app_name">Aplicación Closet</string>
     <string name="main_screenDescription">Pantalla principal de closet</string>
-    <string name="submenu_upload">Subir vestimenta</string>
-    <string name="submenu_head">Accesorios de cabeza</string>
-    <string name="submenu_upperbody">Accesorios de torso</string>
-    <string name="submenu_lowerbody">Accesorios de piernas</string>
-    <string name="submenu_home">Página principal</string>
-    <string name="app_home">Página principal</string>
+    <string name="submenu_head">Cabeza</string>
+    <string name="submenu_upperbody">Torso</string>
+    <string name="submenu_lowerbody">Tren inferior</string>
+    <string name="submenu_home">Pagina principal</string>
+    <string name="app_home">Pagina principal</string>
     <string name="hello_blank_fragment">Hola fragement en blanco</string>
-    <string name="submenu_info">Información</string>
-    <string name="menu_upload_camera">Cámara</string>
+    <string name="submenu_info">Informacion</string>
+    <string name="menu_upload_camera">Camara</string>
     <string name="menu_upload_gallery">Galeria</string>
     <string name="submit">Confirmar</string>
     <string name="errSavingImg">Error al guardar la imagen</string>
@@ -27,4 +25,5 @@
     <string name="shorts">Pantalón corto</string>
     <string name="errImagePermission">Permisos de almacenamiento requeridos para guardar la imagen</string>
     <string name="all">Todos</string>
+    <string name="txtI18nChanged">El idioma fue cambiado correctamente</string>
 </resources>

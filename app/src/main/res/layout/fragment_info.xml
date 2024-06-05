@@ -9,15 +9,26 @@
         android:id="@+id/dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aplicación realizada por Juan Iago Martínez Correia"
-        android:textSize="18sp" />
+        android:text="Closet App"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dialog_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Con el objetivo de recuperar el módulo de PMDM de 2DAM"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:text="Aplicación realizada con el objetivo de recuperar el módulo de PMDM de 2DAM del curso 2023-24 del CIFP Avilés"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/dialog_message2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Viva Galiza y puxe Asturies!"
+        android:textAlignment="viewStart"
+        android:textSize="10sp" />
 
 </LinearLayout>

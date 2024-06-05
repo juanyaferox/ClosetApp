@@ -7,9 +7,45 @@
     tools:context=".ui.fragments.home.HomeFragment">
 
     <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="104dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/appfont"
+        android:paddingTop="20dp"
+        android:shadowColor="#FFFFFF"
+        android:text="Info"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538" />
+
+    <TextView
+        android:id="@+id/textView0I18n"
+        android:layout_width="103dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/appfont"
+        android:paddingTop="20dp"
+        android:shadowColor="#FFFFFF"
+        android:text="Cambiar idioma"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
+
+    <TextView
         android:id="@+id/textView2"
-        android:layout_width="257dp"
-        android:layout_height="64dp"
+        android:layout_width="255dp"
+        android:layout_height="112dp"
         android:fontFamily="@font/appfont"
         android:paddingTop="20dp"
         android:shadowColor="#FFFFFF"
@@ -22,4 +58,90 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewCollections"
+        android:layout_width="327dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/appfont"
+        android:paddingTop="20dp"
+        android:shadowColor="#FFFFFF"
+        android:text="Colecciones"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.196" />
+
+    <ImageButton
+        android:id="@+id/listCollectionButtom"
+        android:layout_width="104dp"
+        android:layout_height="99dp"
+        android:background="@drawable/roundcorner"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_view_list_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31"
+        app:tint="@color/m3_default_color_secondary_text"
+        tools:ignore="PrivateResource" />
+
+    <ImageButton
+        android:id="@+id/infoButtom"
+        android:layout_width="104dp"
+        android:layout_height="99dp"
+        android:background="@drawable/roundcorner"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_info_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.678"
+        app:tint="@color/m3_default_color_secondary_text"
+        tools:ignore="PrivateResource" />
+
+    <ImageButton
+        android:id="@+id/addCollectionButtom"
+        android:layout_width="104dp"
+        android:layout_height="99dp"
+        android:background="@drawable/roundcorner"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_library_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toEndOf="@+id/listCollectionButtom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31"
+        app:tint="@color/m3_default_color_secondary_text"
+        tools:ignore="PrivateResource" />
+
+    <ImageButton
+        android:id="@+id/l19nButtom"
+        android:layout_width="104dp"
+        android:layout_height="99dp"
+        android:background="@drawable/roundcorner"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_language_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676"
+        app:tint="@color/m3_default_color_secondary_text"
+        tools:ignore="PrivateResource" />
 </androidx.constraintlayout.widget.ConstraintLayout>

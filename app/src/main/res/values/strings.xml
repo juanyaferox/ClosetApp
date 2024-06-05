@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Closet App</string>
+    <string name="app_name" translatable="false">Closet App</string>
     <string name="main_screenDescription">Closet main screen</string>
-    <string name="submenu_upload">Upload</string>
-    <string name="submenu_head">Head accessories</string>
-    <string name="submenu_upperbody">Upper body accessories</string>
-    <string name="submenu_lowerbody">Lower body accessories</string>
+    <string name="submenu_upload" translatable="false">Upload</string>
+    <string name="submenu_head">Head</string>
+    <string name="submenu_upperbody">Upper body</string>
+    <string name="submenu_lowerbody">Lower body</string>
     <string name="submenu_home">Home</string>
     <string name="app_home">Home</string>
     <string name="menu_upload_camera">Camera</string>
@@ -31,5 +31,6 @@
     <string name="shorts">Shorts</string>
     <string name="errImagePermission">Need storage privileges to save the image</string>
     <string name="all">All</string>
+    <string name="txtI18nChanged">Language was changed correctly</string>
 
 </resources>
