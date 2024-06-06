@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.galleryFragment -> bottomNavigationView.menu.findItem(R.id.uploadFragment).isChecked = true
+                R.id.listCollectionFragment -> bottomNavigationView.menu.findItem(R.id.homeFragment).isChecked = true
+                R.id.addCollection -> bottomNavigationView.menu.findItem(R.id.homeFragment).isChecked = true
             }
             if (destination.id != R.id.homeFragment && destination.id != R.id.uploadFragment && destination.id != R.id.lowerBodyFragment
                 && destination.id != R.id.upperBodyFragment && destination.id != R.id.headFragment) {

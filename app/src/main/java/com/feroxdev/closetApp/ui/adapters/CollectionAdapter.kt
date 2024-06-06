@@ -28,7 +28,7 @@ class CollectionAdapter(
                 notifyItemChanged(previousPosition)
                 notifyItemChanged(adapterPosition)
             }
-            itemView.setBackgroundColor(if (adapterPosition == selectedPosition) Color.LTGRAY else Color.TRANSPARENT)
+            itemView.setBackgroundColor(if (adapterPosition == selectedPosition) Color.DKGRAY else Color.TRANSPARENT)
         }
     }
 

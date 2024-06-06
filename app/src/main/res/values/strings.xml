@@ -37,5 +37,8 @@
     <string name="errSaving">Error saving</string>
     <string name="errSelect">Select at least one</string>
     <string name="scsSaving">Saved sucessfull</string>
+    <string name="collecionList">Collection List</string>
+    <string name="collections">Collections</string>
+    <string name="changeLenguage">Change lenguage</string>
 
 </resources>

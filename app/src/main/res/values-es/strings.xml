@@ -31,4 +31,7 @@
     <string name="errSaving">Error al guardar</string>
     <string name="errSelect">Selecciona al menos uno</string>
     <string name="scsSaving">Guardado con éxito</string>
+    <string name="collecionList">Lista de colecciones</string>
+    <string name="collections">Colecciones</string>
+    <string name="changeLenguage">Cambiar idioma</string>
 </resources>
