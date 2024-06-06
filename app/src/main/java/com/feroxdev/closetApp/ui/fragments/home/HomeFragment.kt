@@ -56,7 +56,16 @@ class HomeFragment : Fragment() {
             Toast.makeText(requireContext(), getString(R.string.txtI18nChanged), Toast.LENGTH_SHORT).show()
         }
         binding.addCollectionButtom.setOnClickListener {
-
+            it.startAnimation(
+                AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.click_animation
+                )
+            )
+            val action = HomeFragmentDirections.actionHomeFragmentToAddCollection()
+            findNavController().navigate(
+                action
+            )
         }
     }
 

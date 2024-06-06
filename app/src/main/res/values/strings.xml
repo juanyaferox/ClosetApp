@@ -32,5 +32,8 @@
     <string name="errImagePermission">Need storage privileges to save the image</string>
     <string name="all">All</string>
     <string name="txtI18nChanged">Language was changed correctly</string>
+    <string name="addNewCollection">Add new collection</string>
+    <string name="newCollection">New collection</string>
+    <string name="errSaving">Error saving</string>
 
 </resources>

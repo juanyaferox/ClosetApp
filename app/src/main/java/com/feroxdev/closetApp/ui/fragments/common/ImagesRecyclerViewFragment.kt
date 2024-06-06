@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.feroxdev.closetApp.R
@@ -19,9 +20,10 @@ import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFact
 import com.feroxdev.closetApp.utilities.Helper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class ImagesRecyclerViewFragment : Fragment() {
+class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentRecyclerviewBinding
+    private lateinit var imageAdapter: ImageAdapter
     private val imageSourceViewModel: ImageSourceViewModel by activityViewModels {
         ImageSourceViewModelFactory((requireActivity().application as App).imageSourceRepository)
     }
@@ -51,8 +53,9 @@ class ImagesRecyclerViewFragment : Fragment() {
         try{
             if (subcategory != 0) {
                 imageSourceViewModel.getImagesByCategoryAndSubcategory(category, subcategory)
-                    .observe(viewLifecycleOwner) { imageSourceList ->
-                        val adapter = ImageAdapter(imageSourceList)
+                    .observe(viewLifecycleOwner) {
+                        imageSourceList ->
+                        val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
                         if (imageSourceList.isEmpty()) {
@@ -66,7 +69,7 @@ class ImagesRecyclerViewFragment : Fragment() {
             } else {
                 imageSourceViewModel.getImagesByCategory(category)
                     .observe(viewLifecycleOwner) { imageSourceList ->
-                        val adapter = ImageAdapter(imageSourceList)
+                        val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
                         if (imageSourceList.isEmpty()) {
@@ -82,5 +85,10 @@ class ImagesRecyclerViewFragment : Fragment() {
             Log.e("ImagesRecyclerViewFragment", "Error: ${e.message}")
         }
 
+    }
+
+    override fun onItemClick(idImage: Int) {
+        val action = ImagesRecyclerViewFragmentDirections.actionImagesRecyclerViewFragmentToAddToCollectionFragment(idImage)
+        findNavController().navigate(action)
     }
 }

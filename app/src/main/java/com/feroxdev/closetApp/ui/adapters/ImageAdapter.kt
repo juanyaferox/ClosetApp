@@ -10,11 +10,32 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.feroxdev.closetApp.R
 import com.feroxdev.closetApp.data.model.ImageSource
+import com.feroxdev.closetApp.ui.fragments.common.ImagesRecyclerViewFragment
 
-class ImageAdapter(private val imageSourceList: List<ImageSource>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+class ImageAdapter(private val imageSourceList: List<ImageSource>, private val itemClickListener: ImagesRecyclerViewFragment) :
+    RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(idImage: Int)
     }
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val idImage = imageSourceList[position].idImage
+                itemClickListener.onItemClick(idImage)
+            }
+        }
+    }
+
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)

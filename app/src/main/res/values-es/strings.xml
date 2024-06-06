@@ -26,4 +26,7 @@
     <string name="errImagePermission">Permisos de almacenamiento requeridos para guardar la imagen</string>
     <string name="all">Todos</string>
     <string name="txtI18nChanged">El idioma fue cambiado correctamente</string>
+    <string name="addNewCollection">Añadir nueva colección</string>
+    <string name="newCollection">Nueva colección</string>
+    <string name="errSaving">Error al guardar</string>
 </resources>
