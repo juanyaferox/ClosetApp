@@ -8,16 +8,21 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.feroxdev.closetApp.R
 import com.feroxdev.closetApp.data.App
 import com.feroxdev.closetApp.data.model.Collection
+import com.feroxdev.closetApp.data.model.ImageSourceCollectionCrossRef
 import com.feroxdev.closetApp.databinding.FragmentAddtocollectionBinding
 import com.feroxdev.closetApp.ui.adapters.CollectionAdapter
 import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModel
 import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModelFactory
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
+import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModel
+import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModelFactory
 
 class AddToCollectionFragment : Fragment() {
     private lateinit var binding: FragmentAddtocollectionBinding
@@ -27,6 +32,9 @@ class AddToCollectionFragment : Fragment() {
     }
     private val collectionViewModel: CollectionViewModel by activityViewModels {
         CollectionViewModelFactory((requireActivity().application as App).collectionRepository)
+    }
+    private val imageSourceCollectionViewModel: ImageSourceCollectionViewModel by activityViewModels {
+        ImageSourceCollectionViewModelFactory((requireActivity().application as App).imageSourceCollectionRepository)
     }
 
     private var selectedCollection: Collection? = null
@@ -60,14 +68,40 @@ class AddToCollectionFragment : Fragment() {
         }
 
         binding.button6.setOnClickListener {
-            handleObjectSelection()
+            handleObjectSelection(idImage)
         }
     }
 
-    private fun handleObjectSelection() {
-        selectedCollection?.let { collection ->
-            val selectedObjectId = collection.idCollection
-            Toast.makeText(requireContext(), "ID del objeto seleccionado: $selectedObjectId", Toast.LENGTH_SHORT).show()
-        } ?: Toast.makeText(requireContext(), "Por favor, selecciona una colección.", Toast.LENGTH_SHORT).show()
+    private fun handleObjectSelection(idImage:Int) {
+        if (selectedCollection!= null) {
+            try{
+                selectedCollection?.let {
+                    collection ->
+                    val selectedId = collection.idCollection
+                    imageSourceCollectionViewModel.insert(
+                        ImageSourceCollectionCrossRef(
+                        idImageSource = idImage,
+                        idCollection = selectedId
+                        )
+                    )
+                    Toast.makeText(requireContext(), getString(R.string.scsSaving), Toast.LENGTH_SHORT).show()
+                    val args: AddToCollectionFragmentArgs by navArgs()
+                    imageSourceViewModel.getImageById(idImage).observe(viewLifecycleOwner) { image ->
+                        val action = AddToCollectionFragmentDirections.actionAddToCollectionFragmentToImagesRecyclerViewFragment2(
+                            image?.category ?: 0, args.subcategory
+                        )
+                        findNavController().navigate(
+                            action
+                        )
+                    }
+                }
+
+            } catch (e: Exception){
+            Toast.makeText(requireContext(), getString(R.string.errSaving), Toast.LENGTH_SHORT).show()
+            }
+
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.errSelect), Toast.LENGTH_SHORT).show()
+        }
     }
 }

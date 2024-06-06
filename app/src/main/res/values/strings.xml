@@ -35,5 +35,7 @@
     <string name="addNewCollection">Add new collection</string>
     <string name="newCollection">New collection</string>
     <string name="errSaving">Error saving</string>
+    <string name="errSelect">Select at least one</string>
+    <string name="scsSaving">Saved sucessfull</string>
 
 </resources>

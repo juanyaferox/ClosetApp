@@ -29,4 +29,6 @@
     <string name="addNewCollection">Añadir nueva colección</string>
     <string name="newCollection">Nueva colección</string>
     <string name="errSaving">Error al guardar</string>
+    <string name="errSelect">Selecciona al menos uno</string>
+    <string name="scsSaving">Guardado con éxito</string>
 </resources>

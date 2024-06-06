@@ -89,6 +89,12 @@
         <argument
             android:name="idImage"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_addToCollectionFragment_to_imagesRecyclerViewFragment2"
+            app:destination="@id/imagesRecyclerViewFragment" />
+        <argument
+            android:name="subcategory"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addCollection"
