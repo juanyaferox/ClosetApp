@@ -51,10 +51,6 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.galleryFragment -> bottomNavigationView.menu.findItem(R.id.uploadFragment).isChecked = true
             }
-            if (destination.id == R.id.imagesRecyclerViewFragment) {
-
-                bottomNavigationView.menu.findItem(R.id.uploadFragment).isChecked = true
-            }
             if (destination.id != R.id.homeFragment && destination.id != R.id.uploadFragment && destination.id != R.id.lowerBodyFragment
                 && destination.id != R.id.upperBodyFragment && destination.id != R.id.headFragment) {
                 binding.textView3.text = ""

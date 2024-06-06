@@ -67,6 +67,18 @@ class HomeFragment : Fragment() {
                 action
             )
         }
+        binding.listCollectionButtom.setOnClickListener {
+            it.startAnimation(
+                AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.click_animation
+                )
+            )
+            val action = HomeFragmentDirections.actionHomeFragmentToListCollectionFragment()
+            findNavController().navigate(
+                action
+            )
+        }
     }
 
     private fun showCustomDialog() {

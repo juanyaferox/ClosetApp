@@ -95,7 +95,7 @@ class HeadFragment : Fragment() {
 
     private fun navigateToImagesRecyclerView(subcategory: Int) {
         val action = HeadFragmentDirections.actionHeadFragmentToImagesRecyclerViewFragment(
-            Helper.ImageType.HEAD.int, subcategory)
+            Helper.ImageType.HEAD.int, subcategory, -1)
         findNavController().navigate(action)
     }
 }

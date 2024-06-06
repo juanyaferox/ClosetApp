@@ -6,13 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.feroxdev.closetApp.R
-import com.feroxdev.closetApp.data.App
 import com.feroxdev.closetApp.databinding.FragmentCommonsubtypesBinding
-import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
-import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
 import com.feroxdev.closetApp.utilities.Helper
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,10 +24,6 @@ private const val ARG_PARAM2 = "param2"
 class UpperbodyFragment : Fragment() {
 
     private lateinit var binding: FragmentCommonsubtypesBinding
-
-    private val imageSourceViewModel: ImageSourceViewModel by activityViewModels {
-        ImageSourceViewModelFactory((requireActivity().application as App).imageSourceRepository)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,7 +90,7 @@ class UpperbodyFragment : Fragment() {
     }
     private fun navigateToImagesRecyclerView(subcategory: Int) {
         val action = UpperbodyFragmentDirections.actionUpperBodyFragmentToImagesRecyclerViewFragment(
-            Helper.ImageType.UPPERBODY.int, subcategory)
+            Helper.ImageType.UPPERBODY.int, subcategory, -1)
         findNavController().navigate(action)
     }
 

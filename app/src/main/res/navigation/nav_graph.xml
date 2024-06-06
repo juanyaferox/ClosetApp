@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_addCollection"
             app:destination="@id/addCollection" />
+        <action
+            android:id="@+id/action_homeFragment_to_listCollectionFragment"
+            app:destination="@id/listCollectionFragment" />
     </fragment>
 
     <fragment
@@ -72,11 +75,14 @@
         android:id="@+id/imagesRecyclerViewFragment"
         android:name="com.feroxdev.closetApp.ui.fragments.common.ImagesRecyclerViewFragment"
         android:label="ImagesRecyclerViewFragment">
-    <argument
-        android:name="category"
-        app:argType="integer" />
+        <argument
+            android:name="category"
+            app:argType="integer" />
         <argument
             android:name="subcategory"
+            app:argType="integer" />
+        <argument
+            android:name="imageCollection"
             app:argType="integer" />
         <action
             android:id="@+id/action_imagesRecyclerViewFragment_to_addToCollectionFragment"
@@ -100,5 +106,13 @@
         android:id="@+id/addCollection"
         android:name="com.feroxdev.closetApp.ui.fragments.home.AddCollection"
         android:label="AddCollection" />
+    <fragment
+        android:id="@+id/listCollectionFragment"
+        android:name="com.feroxdev.closetApp.ui.fragments.home.ListCollectionFragment"
+        android:label="ListCollectionFragment" >
+        <action
+            android:id="@+id/action_listCollectionFragment_to_imagesRecyclerViewFragment"
+            app:destination="@id/imagesRecyclerViewFragment" />
+    </fragment>
 
 </navigation>

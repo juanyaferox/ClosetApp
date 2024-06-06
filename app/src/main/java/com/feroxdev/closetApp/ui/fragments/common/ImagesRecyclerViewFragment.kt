@@ -17,6 +17,8 @@ import com.feroxdev.closetApp.databinding.FragmentRecyclerviewBinding
 import com.feroxdev.closetApp.ui.adapters.ImageAdapter
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
+import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModel
+import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModelFactory
 import com.feroxdev.closetApp.utilities.Helper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,6 +28,9 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
     private lateinit var imageAdapter: ImageAdapter
     private val imageSourceViewModel: ImageSourceViewModel by activityViewModels {
         ImageSourceViewModelFactory((requireActivity().application as App).imageSourceRepository)
+    }
+    private val imageSourceCollectionViewModel: ImageSourceCollectionViewModel by activityViewModels {
+        ImageSourceCollectionViewModelFactory((requireActivity().application as App).imageSourceCollectionRepository)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +47,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
         val args: ImagesRecyclerViewFragmentArgs by navArgs()
         val category = args.category
         val subcategory = args.subcategory
+        val collection = args.imageCollection
 
         val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         when (category){
@@ -49,9 +55,11 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
             Helper.ImageType.UPPERBODY.int -> bottomNavigationView?.menu?.findItem(R.id.upperBodyFragment)?.isChecked = true
             Helper.ImageType.LOWERBODY.int -> bottomNavigationView?.menu?.findItem(R.id.lowerBodyFragment)?.isChecked = true
         }
+        if (collection > 0)
+            bottomNavigationView?.menu?.findItem(R.id.homeFragment)?.isChecked = true
 
         try{
-            if (subcategory != 0) {
+            if (subcategory > 0) {
                 imageSourceViewModel.getImagesByCategoryAndSubcategory(category, subcategory)
                     .observe(viewLifecycleOwner) {
                         imageSourceList ->
@@ -66,9 +74,27 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                             ).show()
                         }
                     }
-            } else {
+            }
+            else if (collection > 0) {
+                imageSourceCollectionViewModel.getImagesForCollection(collection)
+                    .observe(viewLifecycleOwner) {
+                        imageSourceList ->
+                        val adapter = ImageAdapter(imageSourceList, this)
+                        binding.recyclerView.adapter = adapter
+                        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+                        if (imageSourceList.isEmpty()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "No hay nada para mostrar",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            }
+            else {
                 imageSourceViewModel.getImagesByCategory(category)
-                    .observe(viewLifecycleOwner) { imageSourceList ->
+                    .observe(viewLifecycleOwner) {
+                        imageSourceList ->
                         val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -88,7 +114,9 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
     }
 
     override fun onItemClick(idImage: Int) {
-        val action = ImagesRecyclerViewFragmentDirections.actionImagesRecyclerViewFragmentToAddToCollectionFragment(idImage)
+        val args: ImagesRecyclerViewFragmentArgs by navArgs()
+        val subcategory = args.subcategory
+        val action = ImagesRecyclerViewFragmentDirections.actionImagesRecyclerViewFragmentToAddToCollectionFragment(idImage, subcategory)
         findNavController().navigate(action)
     }
 }

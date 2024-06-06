@@ -69,13 +69,14 @@ class ImageAdapter(private val imageSourceList: List<ImageSource>, private val i
             if (position % 2 == 0) {
                 layoutParams.leftMargin = 20.dpToPx(holder.itemView.context)
                 layoutParams.rightMargin = 15.dpToPx(holder.itemView.context)
-                if (position == imageSourceList.lastIndex || position == imageSourceList.lastIndex - 1){
+                if (position == imageSourceList.lastIndex-1)
                     layoutParams.bottomMargin = 20.dpToPx(holder.itemView.context)
-                }
             }
             else {
                 layoutParams.rightMargin = 20.dpToPx(holder.itemView.context)
                 layoutParams.leftMargin = 15.dpToPx(holder.itemView.context)
+                if (position == imageSourceList.lastIndex)
+                    layoutParams.bottomMargin = 20.dpToPx(holder.itemView.context)
             }
 
         return layoutParams

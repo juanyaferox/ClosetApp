@@ -23,6 +23,8 @@ import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
 import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModel
 import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModelFactory
+import com.feroxdev.closetApp.utilities.Helper
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AddToCollectionFragment : Fragment() {
     private lateinit var binding: FragmentAddtocollectionBinding
@@ -53,8 +55,15 @@ class AddToCollectionFragment : Fragment() {
         val args: AddToCollectionFragmentArgs by navArgs()
         val idImage = args.idImage
 
+        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
         imageSourceViewModel.getImageById(idImage).observe(viewLifecycleOwner) { image ->
             binding.imageView2.setImageURI(image?.path?.toUri())
+            when (image?.category){
+                Helper.ImageType.HEAD.int -> bottomNavigationView?.menu?.findItem(R.id.headFragment)?.isChecked = true
+                Helper.ImageType.UPPERBODY.int -> bottomNavigationView?.menu?.findItem(R.id.upperBodyFragment)?.isChecked = true
+                Helper.ImageType.LOWERBODY.int -> bottomNavigationView?.menu?.findItem(R.id.lowerBodyFragment)?.isChecked = true
+            }
         }
 
         val adapter = CollectionAdapter { collection ->
@@ -88,7 +97,7 @@ class AddToCollectionFragment : Fragment() {
                     val args: AddToCollectionFragmentArgs by navArgs()
                     imageSourceViewModel.getImageById(idImage).observe(viewLifecycleOwner) { image ->
                         val action = AddToCollectionFragmentDirections.actionAddToCollectionFragmentToImagesRecyclerViewFragment2(
-                            image?.category ?: 0, args.subcategory
+                            image?.category ?: 0, args.subcategory, -1
                         )
                         findNavController().navigate(
                             action

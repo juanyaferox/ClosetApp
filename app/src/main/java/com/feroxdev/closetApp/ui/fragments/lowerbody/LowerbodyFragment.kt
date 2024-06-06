@@ -88,7 +88,7 @@ class LowerbodyFragment : Fragment() {
     }
     private fun navigateToImagesRecyclerView(subcategory: Int) {
         val action = LowerbodyFragmentDirections.actionLowerBodyFragmentToImagesRecyclerViewFragment(
-            Helper.ImageType.LOWERBODY.int, subcategory)
+            Helper.ImageType.LOWERBODY.int, subcategory, -1)
         findNavController().navigate(action)
     }
 
