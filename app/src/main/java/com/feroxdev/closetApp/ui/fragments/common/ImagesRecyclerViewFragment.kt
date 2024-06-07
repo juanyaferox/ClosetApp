@@ -73,7 +73,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                 imageSourceViewModel.getImagesByCategoryAndSubcategory(category, subcategory)
                     .observe(viewLifecycleOwner) {
                         imageSourceList ->
-                        binding.textView2.text = Helper.categoryAndSucategoryToString(category,subcategory)
+                        binding.textView2.text = getString(Helper.categoryAndSubcategoryToString(category,subcategory))
                         val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -113,7 +113,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                 imageSourceViewModel.getImagesByCategory(category)
                     .observe(viewLifecycleOwner) {
                         imageSourceList ->
-                        binding.textView2.text = Helper.categoryToString(category)
+                        binding.textView2.text = getString(Helper.categoryToString(category))
                         val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)

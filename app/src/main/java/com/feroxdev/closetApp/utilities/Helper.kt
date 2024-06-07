@@ -37,43 +37,43 @@ class Helper {
     }
 
     companion object {
-        fun categoryToString(category: Int): String {
+        fun categoryToString(category: Int): Int {
             return when (category) {
-                ImageType.HEAD.int -> R.string.title_head.toString()
-                ImageType.UPPERBODY.int -> R.string.title_upperbody.toString()
-                ImageType.LOWERBODY.int -> R.string.title_lowerbody.toString()
-                else -> ""
+                ImageType.HEAD.int -> R.string.title_head
+                ImageType.UPPERBODY.int -> R.string.title_upperbody
+                ImageType.LOWERBODY.int -> R.string.title_lowerbody
+                else -> -1
             }
         }
-        fun categoryAndSucategoryToString(category: Int, subcategory : Int): String {
+        fun categoryAndSubcategoryToString(category: Int, subcategory : Int): Int {
                 if (category == ImageType.HEAD.int) {
                     return when (subcategory) {
-                        HeadSubtype.BONNET.int -> R.string.hat.toString()
-                        HeadSubtype.GLASSES.int -> R.string.glasses.toString()
-                        HeadSubtype.JEWELRY.int -> R.string.jewelry.toString()
-                        HeadSubtype.OTHERS.int -> R.string.others.toString()
-                        else -> ""
+                        HeadSubtype.BONNET.int -> R.string.hat
+                        HeadSubtype.GLASSES.int -> R.string.glasses
+                        HeadSubtype.JEWELRY.int -> R.string.jewelry
+                        HeadSubtype.OTHERS.int -> R.string.others
+                        else -> -1
                     }
                 }
                 if (category == ImageType.UPPERBODY.int) {
                     return when (subcategory) {
-                        UpperSubtype.JACKET.int -> R.string.jacket.toString()
-                        UpperSubtype.SHIRT.int -> R.string.tshirt.toString()
-                        UpperSubtype.SWEATER.int -> R.string.sweater.toString()
-                        UpperSubtype.OTHERS.int -> R.string.others.toString()
-                        else -> ""
+                        UpperSubtype.JACKET.int -> R.string.jacket
+                        UpperSubtype.SHIRT.int -> R.string.tshirt
+                        UpperSubtype.SWEATER.int -> R.string.sweater
+                        UpperSubtype.OTHERS.int -> R.string.others
+                        else -> -1
                     }
                 }
                 if (category == ImageType.LOWERBODY.int) {
                     return when (subcategory) {
-                        LowerSubtype.PANTS.int -> R.string.pants.toString()
-                        LowerSubtype.SHORTS.int -> R.string.shorts.toString()
-                        LowerSubtype.SKIRT.int -> R.string.skirt.toString()
-                        LowerSubtype.BOTTOM.int -> R.string.bottom.toString()
-                        else -> ""
+                        LowerSubtype.PANTS.int -> R.string.pants
+                        LowerSubtype.SHORTS.int -> R.string.shorts
+                        LowerSubtype.SKIRT.int -> R.string.skirt
+                        LowerSubtype.BOTTOM.int -> R.string.bottom
+                        else -> -1
                     }
                 }
-            return ""
+            return -1
         }
     }
 }
