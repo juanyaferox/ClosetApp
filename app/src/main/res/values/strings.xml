@@ -12,9 +12,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="submenu_info">Info</string>
-    <string name="title_lowerbody" translatable="false">Lower body</string>
-    <string name="title_upperbody" translatable="false">Upper body</string>
-    <string name="title_head" translatable="false">Head</string>
+    <string name="title_lowerbody">Lower body</string>
+    <string name="title_upperbody">Upper body</string>
+    <string name="title_head">Head</string>
     <string name="submit">Submit</string>
     <string name="errSavingImg">Error saving image</string>
     <string name="scsSavingImg">Saved successful</string>

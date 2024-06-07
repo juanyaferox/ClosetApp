@@ -45,7 +45,7 @@ class UploadFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUploadBinding.inflate(inflater, container, false)
         return onbinding.root
     }

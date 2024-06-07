@@ -9,6 +9,9 @@
     <string name="submenu_info">Informacion</string>
     <string name="menu_upload_camera">Camara</string>
     <string name="menu_upload_gallery">Galeria</string>
+    <string name="title_lowerbody">Tren inferior</string>
+    <string name="title_upperbody">Torso</string>
+    <string name="title_head">Cabeza</string>
     <string name="submit">Confirmar</string>
     <string name="errSavingImg">Error al guardar la imagen</string>
     <string name="scsSavingImg">Se ha realizado el guardado de manera exitosa</string>

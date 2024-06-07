@@ -45,7 +45,7 @@ class AddToCollectionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAddtocollectionBinding.inflate(inflater, container, false)
         return binding.root
     }
