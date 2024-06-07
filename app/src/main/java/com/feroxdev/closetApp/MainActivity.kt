@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        //Configuramos el boton de navegacion
+        //Configuramos el boton de navegación
         val bottomNavigationView = binding.bottomNavigationView
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //funcion para cargar el idioma guardado
+    //Función para cargar el idioma guardado
     private fun setLocale(language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)

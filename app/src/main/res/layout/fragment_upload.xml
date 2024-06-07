@@ -8,6 +8,42 @@
     tools:context=".ui.fragments.upload.UploadFragment">
 
     <TextView
+        android:id="@+id/textViewTakePhoto"
+        android:layout_width="104dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/appfont"
+        android:paddingTop="20dp"
+        android:shadowColor="#FFFFFF"
+        android:text="@string/menu_upload_camera"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
+
+    <TextView
+        android:id="@+id/textViewGallery"
+        android:layout_width="104dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/appfont"
+        android:paddingTop="20dp"
+        android:shadowColor="#FFFFFF"
+        android:text="@string/menu_upload_gallery"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.214" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="257dp"
         android:layout_height="64dp"
@@ -62,4 +98,5 @@
         app:layout_constraintVertical_bias="0.31"
         app:tint="@color/m3_default_color_secondary_text"
         tools:ignore="PrivateResource" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

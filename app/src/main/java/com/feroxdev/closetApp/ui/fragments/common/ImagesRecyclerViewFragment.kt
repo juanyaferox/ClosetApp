@@ -15,6 +15,8 @@ import com.feroxdev.closetApp.R
 import com.feroxdev.closetApp.data.App
 import com.feroxdev.closetApp.databinding.FragmentRecyclerviewBinding
 import com.feroxdev.closetApp.ui.adapters.ImageAdapter
+import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModel
+import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModelFactory
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
 import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
 import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModel
@@ -33,6 +35,9 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
     }
     private val imageSourceCollectionViewModel: ImageSourceCollectionViewModel by activityViewModels {
         ImageSourceCollectionViewModelFactory((requireActivity().application as App).imageSourceCollectionRepository)
+    }
+    private val collectionViewModel: CollectionViewModel by activityViewModels {
+        CollectionViewModelFactory((requireActivity().application as App).collectionRepository)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +73,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                 imageSourceViewModel.getImagesByCategoryAndSubcategory(category, subcategory)
                     .observe(viewLifecycleOwner) {
                         imageSourceList ->
+                        binding.textView2.text = Helper.categoryAndSucategoryToString(category,subcategory)
                         val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -83,6 +89,9 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
 
             //Muestra todas las imagenes relacionadas a una colección
             else if (collection > 0) {
+                collectionViewModel.getCollectionById(collection).observe(viewLifecycleOwner){
+                    binding.textView2.text = it?.collectionName
+                }
                 imageSourceCollectionViewModel.getImagesForCollection(collection)
                     .observe(viewLifecycleOwner) {
                         imageSourceList ->
@@ -104,6 +113,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                 imageSourceViewModel.getImagesByCategory(category)
                     .observe(viewLifecycleOwner) {
                         imageSourceList ->
+                        binding.textView2.text = Helper.categoryToString(category)
                         val adapter = ImageAdapter(imageSourceList, this)
                         binding.recyclerView.adapter = adapter
                         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
