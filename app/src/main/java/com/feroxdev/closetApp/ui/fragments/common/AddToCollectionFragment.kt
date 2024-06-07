@@ -39,6 +39,7 @@ class AddToCollectionFragment : Fragment() {
         ImageSourceCollectionViewModelFactory((requireActivity().application as App).imageSourceCollectionRepository)
     }
 
+    // Variable para almacenar la colección seleccionada
     private var selectedCollection: Collection? = null
 
     override fun onCreateView(
@@ -57,6 +58,7 @@ class AddToCollectionFragment : Fragment() {
 
         val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
+        //Selecciona el submenu correspondiente
         imageSourceViewModel.getImageById(idImage).observe(viewLifecycleOwner) { image ->
             binding.imageView2.setImageURI(image?.path?.toUri())
             when (image?.category){
@@ -66,12 +68,14 @@ class AddToCollectionFragment : Fragment() {
             }
         }
 
+        // Configurar el adaptador del RecyclerView
         val adapter = CollectionAdapter { collection ->
             selectedCollection = collection
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
+        // Observar las colecciones y actualizar el adaptador cuando los datos cambien
         collectionViewModel.getAllCollections().observe(viewLifecycleOwner) { collections ->
             adapter.submitList(collections)
         }
@@ -81,6 +85,7 @@ class AddToCollectionFragment : Fragment() {
         }
     }
 
+    // Método para manejar la lógica de guardar la imagen en la colección seleccionada
     private fun handleObjectSelection(idImage:Int) {
         if (selectedCollection!= null) {
             try{
@@ -94,6 +99,8 @@ class AddToCollectionFragment : Fragment() {
                         )
                     )
                     Toast.makeText(requireContext(), getString(R.string.scsSaving), Toast.LENGTH_SHORT).show()
+
+                    // Navegar a otro fragmento después de guardar
                     val args: AddToCollectionFragmentArgs by navArgs()
                     imageSourceViewModel.getImageById(idImage).observe(viewLifecycleOwner) { image ->
                         val action = AddToCollectionFragmentDirections.actionAddToCollectionFragmentToImagesRecyclerViewFragment2(

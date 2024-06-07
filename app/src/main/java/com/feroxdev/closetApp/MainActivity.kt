@@ -1,21 +1,13 @@
 package com.feroxdev.closetApp
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.feroxdev.closetApp.data.App
 import com.feroxdev.closetApp.databinding.ActivityMainBinding
-import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModel
-import com.feroxdev.closetApp.ui.viewmodels.Collection.CollectionViewModelFactory
-import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModel
-import com.feroxdev.closetApp.ui.viewmodels.ImageSource.ImageSourceViewModelFactory
-import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModel
-import com.feroxdev.closetApp.ui.viewmodels.ImageSourceCollection.ImageSourceCollectionViewModelFactory
-import com.feroxdev.closetApp.utilities.PreferenceUtils
 import java.util.Locale
 
 
@@ -23,30 +15,31 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
-    private val imageSourceViewModel: ImageSourceViewModel by viewModels {
-        ImageSourceViewModelFactory((application as App).imageSourceRepository)
-    }
-
-    private val collectionViewModel: CollectionViewModel by viewModels {
-        CollectionViewModelFactory((application as App).collectionRepository)
-    }
-
-    private val imageSourceCollectionViewModel: ImageSourceCollectionViewModel by viewModels {
-        ImageSourceCollectionViewModelFactory((application as App).imageSourceCollectionRepository)
-    }
-    private var menuInt : Int = 0;
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Cargo el idioma guardado
+        val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val language = sharedPreferences.getString("My_Lang", "")
+        language?.let { setLocale(it) }
+
+        //Inflamos la vista
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Cargamos el navController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
+        //Configuramos el boton de navegacion
         val bottomNavigationView = binding.bottomNavigationView
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
+
+
+        //Lógica creada con 2 objetivos:
+        // - Corregir un bug que no mostraba correctamente seleccionado el icono del submenu al cambiar a otro y volver
+        // - Ocultar texto de nombre de la app en otra pantallas q no sean las principales
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.galleryFragment -> bottomNavigationView.menu.findItem(R.id.uploadFragment).isChecked = true
@@ -61,18 +54,15 @@ class MainActivity : AppCompatActivity() {
                 binding.textView3.text = getString(R.string.app_name)
             }
         }
-        val language = PreferenceUtils.getLanguage(this)
-        setLocale(language)
     }
 
-    private fun setLocale(language: String?) {
-        language?.let {
-            val locale = Locale(it)
-            Locale.setDefault(locale)
-            val config = Configuration()
-            config.setLocale(locale)
-            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-        }
+    //funcion para cargar el idioma guardado
+    private fun setLocale(language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     override fun onSupportNavigateUp(): Boolean {

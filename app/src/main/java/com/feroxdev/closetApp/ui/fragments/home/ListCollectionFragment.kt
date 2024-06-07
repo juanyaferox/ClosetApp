@@ -42,6 +42,7 @@ class ListCollectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Inicializar el recycler view y el adaptador
         binding.rvList.layoutManager = LinearLayoutManager(requireContext())
         val adapter = CollectionAdapter { collection ->
             val selectedId = collection.idCollection

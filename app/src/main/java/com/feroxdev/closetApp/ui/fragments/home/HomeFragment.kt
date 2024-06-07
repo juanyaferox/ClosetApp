@@ -1,6 +1,5 @@
 package com.feroxdev.closetApp.ui.fragments.home
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +12,15 @@ import androidx.navigation.fragment.findNavController
 import com.feroxdev.closetApp.R
 import com.feroxdev.closetApp.databinding.FragmentHomeBinding
 import com.feroxdev.closetApp.ui.fragments.misc.InfoFragment
-import com.feroxdev.closetApp.utilities.PreferenceUtils
-import java.util.Locale
+import com.feroxdev.closetApp.utilities.lenguageManager.LocaleManager
+import com.feroxdev.closetApp.utilities.lenguageManager.PreferencesManager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private var currentLanguage: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +33,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //boton de mostrar información
         binding.infoButtom.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -41,6 +43,10 @@ class HomeFragment : Fragment() {
                 )
             )
             showCustomDialog() }
+
+        //logica para reconocer el idioma actual y intercambiar entre ingles y español al presionar
+        currentLanguage = PreferencesManager.loadLanguagePreference(requireContext())
+        currentLanguage?.let { LocaleManager.setLocale(requireContext(), it) }
         binding.l19nButtom.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -48,13 +54,14 @@ class HomeFragment : Fragment() {
                     R.anim.click_animation
                 )
             )
-            val currentLanguage = PreferenceUtils.getLanguage(requireContext())
             val newLanguage = if (currentLanguage == "en") "es" else "en"
-            PreferenceUtils.setLanguage(requireContext(), newLanguage)
-            setLocale(newLanguage)
-            refreshFragment()
+            LocaleManager.setLocale(requireContext(), newLanguage)
+            PreferencesManager.saveLanguagePreference(requireContext(), newLanguage)
+
+            activity?.recreate()
             Toast.makeText(requireContext(), getString(R.string.txtI18nChanged), Toast.LENGTH_SHORT).show()
         }
+
         binding.addCollectionButtom.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -67,6 +74,7 @@ class HomeFragment : Fragment() {
                 action
             )
         }
+
         binding.listCollectionButtom.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -84,22 +92,5 @@ class HomeFragment : Fragment() {
     private fun showCustomDialog() {
         val dialogFragment: DialogFragment = InfoFragment()
         dialogFragment.show(parentFragmentManager,"custom_dialog")
-    }
-
-    private fun setLocale(languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.setLocale(locale)
-        activity?.apply {
-            resources.updateConfiguration(config, resources.displayMetrics)
-            recreate()  // Restart activity to apply changes
-        }
-    }
-
-    private fun refreshFragment() {
-        val navController = findNavController()
-        navController.popBackStack()
-        navController.navigate(R.id.homeFragment)
     }
 }

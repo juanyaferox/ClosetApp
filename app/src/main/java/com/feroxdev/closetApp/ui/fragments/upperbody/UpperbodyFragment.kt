@@ -29,7 +29,6 @@ class UpperbodyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCommonsubtypesBinding.inflate(inflater, container, false)
         binding.textView2.text = getString(R.string.title_upperbody)
         binding.button1.text = getString(R.string.jacket)
@@ -51,6 +50,7 @@ class UpperbodyFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.UpperSubtype.JACKET.int)
         }
+
         binding.button2.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -60,6 +60,7 @@ class UpperbodyFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.UpperSubtype.SHIRT.int)
         }
+
         binding.button3.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -69,6 +70,7 @@ class UpperbodyFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.UpperSubtype.SWEATER.int)
         }
+
         binding.button4.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -78,6 +80,7 @@ class UpperbodyFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.UpperSubtype.OTHERS.int)
         }
+
         binding.button5.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -88,6 +91,8 @@ class UpperbodyFragment : Fragment() {
             navigateToImagesRecyclerView(0)
         }
     }
+
+    //Función para navegar a la RecyclerView de imágenes
     private fun navigateToImagesRecyclerView(subcategory: Int) {
         val action = UpperbodyFragmentDirections.actionUpperBodyFragmentToImagesRecyclerViewFragment(
             Helper.ImageType.UPPERBODY.int, subcategory, -1)

@@ -60,14 +60,14 @@ class GalleryFragment : Fragment() {
 
         onbinding.radioGroup2.setOnCheckedChangeListener {
                 _, checkedId ->
-            changueOptions(checkedId)//cambio el texto de los botones de subtipo
+            changueOptions(checkedId)//Se definen las opciones de subcategoría
         }
 
         val args: GalleryFragmentArgs by navArgs()
         val imageUriString = args.imageUri
 
         val imageUri = Uri.parse(imageUriString)
-        //muestro la imagen
+        //Se muestra la imagen
         onbinding.imageView.adjustViewBounds = true
         onbinding.imageView.setImageURI(imageUri)
         onbinding.button.setOnClickListener{
@@ -75,7 +75,7 @@ class GalleryFragment : Fragment() {
             try{
                 imageSourceViewModel.insert(imageSource)
                 Toast.makeText(requireContext(), getString(R.string.scsSavingImg), Toast.LENGTH_SHORT).show()
-                //una vez guardado en el repositorio vuelvo atrás
+                //Una vez guardado en el repositorio regreso al fragmento anterior
                 val navController = findNavController()
                 navController.popBackStack()
                 findNavController().navigate(R.id.uploadFragment)
@@ -97,6 +97,8 @@ class GalleryFragment : Fragment() {
         onbinding.option3RadioButton.text = getString(R.string.jewelry)
         onbinding.option4RadioButton.text = getString(R.string.others)
     }
+
+    //Se definen las opciones de guardado
     private fun changueOptions(checkedId: Int) {
 
             when(checkedId){
@@ -120,6 +122,8 @@ class GalleryFragment : Fragment() {
                 }
             }
     }
+
+    //Función para guardar la imagen en la base de datos
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createImageSourceModel(imageUri: Uri) : ImageSource {
         val name = onbinding.editTextText.text
@@ -146,6 +150,8 @@ class GalleryFragment : Fragment() {
             dischargeDate = LocalDateTime.now().toString(),
         )
     }
+
+    //Función para copiar la imagen a la carpeta de almacenamiento desde ubicación temporal
     private fun copyImageToLocalDirectory(imageUri: Uri) : String {
         val inputStream: InputStream? = requireContext().contentResolver.openInputStream(imageUri)
         val outputDir = File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "SavedImages")
@@ -171,6 +177,7 @@ class GalleryFragment : Fragment() {
         return outputFile.absolutePath
     }
 
+    //Función para verificar los permisos necesarios
     private fun checkStoragePermissions() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -178,6 +185,7 @@ class GalleryFragment : Fragment() {
         }
     }
 
+    //Función para solicitar los permisos necesarios
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {

@@ -25,6 +25,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentRecyclerviewBinding
+
+    // Inicialización de los ViewModels
     private lateinit var imageAdapter: ImageAdapter
     private val imageSourceViewModel: ImageSourceViewModel by activityViewModels {
         ImageSourceViewModelFactory((requireActivity().application as App).imageSourceRepository)
@@ -49,6 +51,8 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
         val subcategory = args.subcategory
         val collection = args.imageCollection
 
+
+        // Configurar la barra de navegación inferior
         val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         when (category){
             Helper.ImageType.HEAD.int -> bottomNavigationView?.menu?.findItem(R.id.headFragment)?.isChecked = true
@@ -59,6 +63,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
             bottomNavigationView?.menu?.findItem(R.id.homeFragment)?.isChecked = true
 
         try{
+            //Muestra las imagenes realacionadas a una categoria y subcategoria
             if (subcategory > 0) {
                 imageSourceViewModel.getImagesByCategoryAndSubcategory(category, subcategory)
                     .observe(viewLifecycleOwner) {
@@ -75,6 +80,8 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                         }
                     }
             }
+
+            //Muestra todas las imagenes relacionadas a una colección
             else if (collection > 0) {
                 imageSourceCollectionViewModel.getImagesForCollection(collection)
                     .observe(viewLifecycleOwner) {
@@ -91,6 +98,8 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
                         }
                     }
             }
+
+            //Muestra todas las imagenes relacionadas a una categoria
             else {
                 imageSourceViewModel.getImagesByCategory(category)
                     .observe(viewLifecycleOwner) {
@@ -113,6 +122,7 @@ class ImagesRecyclerViewFragment : Fragment(), ImageAdapter.OnItemClickListener 
 
     }
 
+    //Permite que al click en una imagen podamos añadirla a una colección previamente creada
     override fun onItemClick(idImage: Int) {
         val args: ImagesRecyclerViewFragmentArgs by navArgs()
         val subcategory = args.subcategory

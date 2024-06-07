@@ -32,7 +32,6 @@ class HeadFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCommonsubtypesBinding.inflate(inflater, container, false)
         binding.textView2.text = getString(R.string.title_head)
         binding.button1.text = getString(R.string.hat)
@@ -54,6 +53,7 @@ class HeadFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.HeadSubtype.BONNET.int)
         }
+
         binding.button2.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -62,8 +62,8 @@ class HeadFragment : Fragment() {
                 )
             )
             navigateToImagesRecyclerView(Helper.HeadSubtype.GLASSES.int)
-
         }
+
         binding.button3.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -73,6 +73,7 @@ class HeadFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.HeadSubtype.JEWELRY.int)
         }
+
         binding.button4.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -82,6 +83,7 @@ class HeadFragment : Fragment() {
             )
             navigateToImagesRecyclerView(Helper.HeadSubtype.OTHERS.int)
         }
+
     binding.button5.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -93,6 +95,7 @@ class HeadFragment : Fragment() {
         }
     }
 
+    //Función para navegar a la RecyclerView de imágenes
     private fun navigateToImagesRecyclerView(subcategory: Int) {
         val action = HeadFragmentDirections.actionHeadFragmentToImagesRecyclerViewFragment(
             Helper.ImageType.HEAD.int, subcategory, -1)

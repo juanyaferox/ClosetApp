@@ -34,25 +34,28 @@ class AddCollection : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //recibe el texto escrito y lo guarda en la bbdd
         binding.button7.setOnClickListener {
             val text = binding.editTextText2.text.toString()
-            try{
-                collectionViewModel.insert(
-                    Collection(
-                        collectionName = text
+            if (text.isNotEmpty()) {
+                try{
+                    collectionViewModel.insert(
+                        Collection(
+                            collectionName = text
+                        )
                     )
-                )
-                Toast.makeText(requireContext(), getString(R.string.scsSavingImg), Toast.LENGTH_SHORT).show()
-                //una vez guardado en el repositorio vuelvo atrás
-                val navController = findNavController()
-                navController.popBackStack()
-                findNavController().navigate(R.id.homeFragment)
-            } catch (e: Exception) {
+                    Toast.makeText(requireContext(), getString(R.string.scsSavingImg), Toast.LENGTH_SHORT).show()
+                    //una vez guardado en el repositorio vuelvo atrás
+                    val navController = findNavController()
+                    navController.popBackStack()
+                    findNavController().navigate(R.id.homeFragment)
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), getString(R.string.errSaving), Toast.LENGTH_SHORT).show()
+                }
+            } else {
                 Toast.makeText(requireContext(), getString(R.string.errSaving), Toast.LENGTH_SHORT).show()
             }
-
         }
-
-
     }
 }

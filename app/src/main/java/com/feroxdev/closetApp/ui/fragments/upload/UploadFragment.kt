@@ -46,7 +46,6 @@ class UploadFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentUploadBinding.inflate(inflater, container, false)
         return onbinding.root
     }
@@ -87,7 +86,7 @@ class UploadFragment : Fragment() {
                 }
             }
 
-
+        //Botón para abrir la galería
         onbinding.galleryButtom.setOnClickListener {
             it.startAnimation(
                 AnimationUtils.loadAnimation(
@@ -119,6 +118,7 @@ class UploadFragment : Fragment() {
         binding = null
     }
 
+    //Función para llamar a la camara y capturar la imagen
     private fun dispatchTakePictureIntent() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
@@ -129,6 +129,7 @@ class UploadFragment : Fragment() {
         }
     }
 
+    //Función para crear ubicación temporal para la imagen
     private fun createTempImageFile(): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val imageFileName = "JPEG_${timeStamp}_"
